@@ -34,10 +34,27 @@ class Markov_Chain:
 				print "gay"
 		print(markov_chain)
 
-	def create_output(self):
-		length = randint(1, 50)
+	def create_output(length):
+		#if input length is zero, create a random length
+		if length == 0:
+			length = randint(1, 50)
+
 		outputString = "OUTPUT STRING: "
 		outputString += str(choice(list(markov_chain)))
+
+		for word in range(length):
+
+			parseOutput = outputString.split()
+			#random access number which is length of possible options for each word
+			answerLength = len(markov_chain[parseOutput[-1]])
+			#access last element in list and find in dictionary
+			try:
+				outputString += ' '.join(markov_chain[parseOutput[-1]])
+				print answerLength
+			except:
+				print "length out of range exception"
+				print answerLength
+
 
 		print (outputString)
 
@@ -45,7 +62,6 @@ class Markov_Chain:
 
 
 newchain = Markov_Chain()
-
 newchain.create_markov()
 newchain.create_output()
 
