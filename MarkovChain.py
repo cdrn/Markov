@@ -29,7 +29,7 @@ class Markov_Chain:
 			try:
 				markov_chain[word].append(words[i+1])
 			except:
-				print "gay"
+				print "hmmm some error occured"
 		print(markov_chain)
 
 	def create_output(self, length):
