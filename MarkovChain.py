@@ -39,20 +39,20 @@ class Markov_Chain:
 
 		outputString = "OUTPUT STRING: "
 		outputString += str(choice(list(markov_chain)))
-		outputString += " "
 
 		for word in range(length):
 
 			# split the new string every time we iterate, by spaces
 			parseOutput = outputString.split()
-			print parseOutput
 			#store the last word in the markov chain here to search for the next word (key)
 			lastWord = parseOutput[-1]
-
 			#use the key in the markov chain to retrieve possible next words
 			keyList = markov_chain[lastWord]
+			#save length of keylist, decrement by 1 for 0 indexing
+			keyListLen = len(keyList)-1
+			keyListRand = randint(0, keyListLen)
 			#select a word from the keylist and add to the output string
-			outputString += " " + keyList[0]
+			outputString += " " + keyList[keyListRand]
 
 
 
