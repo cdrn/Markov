@@ -4,18 +4,18 @@ from sys import *
 from collections import defaultdict
 
 
-#dummy var
+#dummy var TODO delet this
 var = 0;
 
 
 class Markov_Chain:
+	#global data structure which will hold the chain
 	global markov_chain 
 	markov_chain = defaultdict(list)
 
-
-	def create_markov(input):
+	def create_markov(self, fileInput):
 		# open and parse the text file
-		open_input = open('test.txt', 'r')
+		open_input = open(fileInput, 'r')
 		# pass it to a string
 		input_string = open_input.read()
 		#split into an array
@@ -46,15 +46,16 @@ class Markov_Chain:
 			parseOutput = outputString.split()
 			#store the last word in the markov chain here to search for the next word (key)
 			lastWord = parseOutput[-1]
-			#use the key in the markov chain to retrieve possible next words
-			keyList = markov_chain[lastWord]
-			#save length of keylist, decrement by 1 for 0 indexing
-			keyListLen = len(keyList)-1
-			keyListRand = randint(0, keyListLen)
-			#select a word from the keylist and add to the output string
-			outputString += " " + keyList[keyListRand]
-
-
+			try:
+				#use the key in the markov chain to retrieve possible next words
+				keyList = markov_chain[lastWord]
+				#save length of keylist, decrement by 1 for 0 indexing
+				keyListLen = len(keyList)-1
+				keyListRand = randint(0, keyListLen)
+				#select a word from the keylist and add to the output string
+				outputString += " " + keyList[keyListRand]
+			except:
+				print 'no match for iteration', word
 
 		print(outputString)
 
@@ -62,7 +63,9 @@ class Markov_Chain:
 
 
 newchain = Markov_Chain()
-newchain.create_markov()
+
+newchain.create_markov("test.txt")
+
 newchain.create_output(20)
 
 
