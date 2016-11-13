@@ -14,8 +14,6 @@ class Markov_Chain:
 
 
 	def create_markov(input):
-
-
 		# open and parse the text file
 		open_input = open('test.txt', 'r')
 		# pass it to a string
@@ -34,36 +32,38 @@ class Markov_Chain:
 				print "gay"
 		print(markov_chain)
 
-	def create_output(length):
+	def create_output(self, length):
 		#if input length is zero, create a random length
 		if length == 0:
 			length = randint(1, 50)
 
 		outputString = "OUTPUT STRING: "
 		outputString += str(choice(list(markov_chain)))
+		outputString += " "
 
 		for word in range(length):
 
+			# split the new string every time we iterate, by spaces
 			parseOutput = outputString.split()
-			#random access number which is length of possible options for each word
-			answerLength = len(markov_chain[parseOutput[-1]])
-			#access last element in list and find in dictionary
-			try:
-				outputString += ' '.join(markov_chain[parseOutput[-1]])
-				print answerLength
-			except:
-				print "length out of range exception"
-				print answerLength
+			print parseOutput
+			#store the last word in the markov chain here to search for the next word (key)
+			lastWord = parseOutput[-1]
+
+			#use the key in the markov chain to retrieve possible next words
+			keyList = markov_chain[lastWord]
+			#select a word from the keylist and add to the output string
+			outputString += " " + keyList[0]
 
 
-		print (outputString)
+
+		print(outputString)
 
 
 
 
 newchain = Markov_Chain()
 newchain.create_markov()
-newchain.create_output()
+newchain.create_output(20)
 
 
 
