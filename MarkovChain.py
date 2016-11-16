@@ -4,9 +4,6 @@ from sys import *
 from collections import defaultdict
 
 
-#dummy var TODO delet this
-var = 0;
-
 
 class Markov_Chain:
 	#global data structure which will hold the chain
@@ -20,9 +17,6 @@ class Markov_Chain:
 		input_string = open_input.read()
 		#split into an array
 		words = input_string.split()
-		#print the split array for debugging
-		# print(words)
-
 		#store a list of subsequents in each dictionary word entry
 		for i, word in enumerate(words):
 				# try append next to dictionary if a next word exists
@@ -60,12 +54,8 @@ class Markov_Chain:
 		print(outputString)
 
 
-
-
 newchain = Markov_Chain()
-
 newchain.create_markov("test.txt")
-
 newchain.create_output(20)
 
 
