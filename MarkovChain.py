@@ -31,7 +31,8 @@ class Markov_Chain:
 		if length == 0:
 			length = randint(1, 50)
 
-		outputString = "OUTPUT STRING: " + str(choice(list(markov_chain)))
+		outputString = "OUTPUT STRING: "
+		outputString += str(choice(list(markov_chain)))
 
 		for word in range(length):
 
